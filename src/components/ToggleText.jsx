@@ -2,14 +2,14 @@ import { useRef, useState } from 'react';
 
 function ToggleText() {
   const textRef = useRef(null);
-  const isVisible = useRef(true);
+  const [isVisible, setIsVisible] = useState(true);
   const [duration, setDuration] = useState(0.5);
 
   function handleClick() {
     const animationDuration = `${duration}s`;
     textRef.current.style.transition = `all ${animationDuration} ease`;
 
-    if (isVisible.current) {
+    if (isVisible) {
       textRef.current.style.maxHeight = '0';
       textRef.current.style.opacity = '0';
     } else {
@@ -17,17 +17,15 @@ function ToggleText() {
       textRef.current.style.opacity = '1';
     }
 
-    isVisible.current = !isVisible.current;
-
-    console.log(isVisible.current);
+    setIsVisible((prev) => !prev);
   }
 
-  console.log(isVisible.current);
+  console.log(isVisible);
 
   return (
     <div>
       <button onClick={handleClick}>
-        {isVisible.current ? 'Hide text' : 'Show text'}
+        {isVisible ? 'Hide text' : 'Show text'}
       </button>
       <input
         type="number"
