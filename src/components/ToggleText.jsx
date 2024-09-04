@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react';
+import styles from './ToggleText.module.css';
 
 function ToggleText() {
   const textRef = useRef(null);
@@ -23,8 +24,8 @@ function ToggleText() {
   console.log(isVisible);
 
   return (
-    <div>
-      <button onClick={handleClick}>
+    <div className={styles.container}>
+      <button className={styles.btn} onClick={handleClick}>
         {isVisible ? 'Hide text' : 'Show text'}
       </button>
       <input
